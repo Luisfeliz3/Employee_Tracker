@@ -1,20 +1,20 @@
-var mysql = require("mysql");
-const inquirer = require("inquirer");
+
+// const inquirer = require("inquirer");
 
 
-var connection = mysql.createConnection({
-  host: "localhost",
+// var connection = mysql.createConnection({
+//   host: "localhost",
 
-  // Your port; if not 3306
-  port: 3306,
+//   // Your port; if not 3306
+//   port: 3306,
 
-  // Your username
-  user: "root",
+//   // Your username
+//   user: "root",
 
-  // Your password
-  password: "12345678",
-  database: "top_songsDB"
-});
+//   // Your password
+//   password: "12345678",
+//   database: "top_songsDB"
+// });
 
 
 const mysql = require("mysql");
@@ -26,7 +26,7 @@ var connection = mysql.createConnection({
   // Your username
   user: "root",
   // Your password
-  password: "password",
+  password: "12345678",
   database: "top_songsDB",
 });
 connection.connect(function (err) {
@@ -40,29 +40,38 @@ connection.connect(function (err) {
     3. Data contained within a range 
     4. look for a specific song in top 5000
 */
-function start() {}
-function getSongsByArtist() {
-  inquirer
-    .prompt({
-      name: "artist",
-      type: "input",
-      message: "Enter an artist",
-    })
-    .then((result) => {
-      const { artist } = result;
-      connection.query(
-        "SELECT * FROM top5000 WHERE artist = ?",
-        [artist],
-        function (err, result) {
-          if (err) throw err;
-          console.table(result);
-          start();
-        }
-      );
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+
+async function start() {
+ 
+   const {choice} = await prompt([{
+      name: "action",
+      type: "list",
+      message: "What would you like to do ?",
+      choices:[{
+        name : "View all employees ?",
+        value : "VIEW_EMPLOYEES"
+      },
+      {
+        name : "Add Role",
+        value : "ADD_ROLE"
+      },
+      {
+        name : "View all Departments ?",
+        value : "VIEW_DEPARTMENTS"
+      }
+    ]
+    }]);
+
+    switch (choice) {
+      case "VIEW_EMPLOYEES":
+          return viewEmployee();
+        break;
+    
+      default:
+        break;
+    }
+    
 }
 
 start();
+
