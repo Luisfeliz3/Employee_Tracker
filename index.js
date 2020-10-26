@@ -64,9 +64,14 @@ async function start() {
 
     switch (choice) {
       case "VIEW_EMPLOYEES":
-          return viewEmployee();
+        return viewEmployee();
         break;
-    
+      case "VIEW_EMPLOYEES":
+        return viewEmployee();
+        break;
+      case "VIEW_EMPLOYEES":
+        return viewEmployee();
+        break;
       default:
         break;
     }
