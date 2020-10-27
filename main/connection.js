@@ -1,6 +1,5 @@
 const mysql = require("mysql");
-const util = require("utils");
-
+const util = require('util');
 const connection = mysql.createConnection({
   host: "localhost",
   // Your port; if not 3306
@@ -9,15 +8,10 @@ const connection = mysql.createConnection({
   user: "root",
   // Your password
   password: "12345678",
-  database: "top_songsDB",
+  database: "employee_DB",
 });
-connection.connect(function (err) {
-  if (err) throw err;
-  //   connection.end();
-});
+connection.connect();
 
 connection.query = util.promisify(connection.query);
-
-
 
 module.exports = connection;

@@ -1,16 +1,23 @@
-
+const connection = require("./connection");
 
 class DB {
+  constructor(connection) {
+    this.connection = connection;
+  }
 
-constructor() {
-this.connection = connection;
+  findAllEmployees() {
+    console.log(this.connection.query("SELECT * FROM employee;"));
+    return this.connection.query("SELECT * FROM employee;");
+  }
+
+
+  allEmployeeRoles() {
+    console.log(this.connection.query("SELECT * FROM department;"));
+    return this.connection.query("SELECT * FROM department;");
+  }
+
+
+  
 }
-
-findAllEmployees() {
-    return this.connection.query(`SELECT * FROM employees`)
-}
-
-}
-
 
 module.exports = new DB(connection);
