@@ -4,14 +4,13 @@ CREATE database employee_DB;
 USE employee_DB;
 
 CREATE TABLE department (
-  id INT AUTO_INCREMENT,
-  name VARCHAR(30),
-  PRIMARY KEY (id)
+  id INT AUTO_INCREMENT NOT NULL,
+  name VARCHAR(30) NOT NULL,
+  PRIMARY KEY (id) NOT NULL
 );
 
-
-CREATE TABLE role (
-  id AUTO_INCREMENT,
+CREATE TABLE roles (
+  id INT AUTO_INCREMENT,
   title VARCHAR(30),
   salary DECIMAL,
   department_id INT,
@@ -19,14 +18,21 @@ CREATE TABLE role (
 );
 
 CREATE TABLE employee (
-  id AUTO_INCREMENT,
+  id INT AUTO_INCREMENT,
   first_name VARCHAR(30),
+  lasst_name VARCHAR(30),
   role_id DECIMAL,
   manager_id INT,
   PRIMARY KEY (id)
 );
 
+
 SELECT * FROM department;
 
+
 INSERT INTO department ( name)
+VALUES ('Technical');
+
+
+INSERT INTO employee (fname,lname)
 VALUES ('Technical');
