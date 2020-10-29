@@ -10,41 +10,51 @@ class DB {
     return this.connection.query("SELECT * FROM employee;");
   }
 
-
   employeeRoles() {
-    
-    return this.connection.query("SELECT * FROM role;");
+    return this.connection.query("SELECT * FROM roles;");
+  }
+
+  getManager(manager) {
+    // const role_id =parseInt(manager.manager_id);
+    return this.connection.query(`SELECT * FROM employee WHERE manager_id = 4;`);
   }
 
   viewDepartments() {
-    
     return this.connection.query("SELECT * FROM department;");
   }
 
-  addEmployee(employee) {
-    const manager_id =parseInt(employee.manager_id)
-    const role_id =parseInt(employee.role_id);
+addEmployee(employee) {
+    return this.connection.query(`INSERT INTO employee (first_name, last_name, role_id, manager_id)
+    VALUES ("${employee.first_name}",
+    "${employee.last_name}",
+    ${employee.role_id.split(" ")[0]},
+    ${employee.Managers.split(" ")[0]});`);
+}
 
+addDepartment(department) {
 
+  console.log(department + "<<<<<-------");
+    return this.connection.query(`INSERT INTO department (name) VALUES ("${department}");`);
+}
 
-    return this.connection.query(`INSERT INTO employee (first_name, lasst_name, role_id, manager_id)
-    VALUES ("${employee.firstName}","${employee.lastName}","${role_id}","${manager_id}");`);
+addRole(role) {
 
-//   `  INSERT INTO employee (first_name,lasst_name,role_id,manager_id)
-//     VALUES ('${employee}','${employee}', ${employee}, ${employee});`
-
-//     return this.connection.query(`INSERT INTO employee ( name)
-//     VALUES (${employee})`);
-
-    //    console.log(employee.firstName);
-    //      console.log(employee.lastName);
-    //       console.log(employee.role_id);
-    //   console.log(employee.manager_id);
+  console.log(role + "<<<<<-------");
+    return this.connection.query(`INSERT INTO roles (title) VALUES ("${role}");`);
 }
 
 
-
-  
+deleteEmployee(employee) {
+  console.log(parseInt(employee.id.split("")[0]) + '<<============');
+    return this.connection.query(`DELETE FROM employee WHERE id = ${parseInt(employee.id.split("")[0])};`);
 }
 
+updateEmployee(employee) {
+  return this.connection.query(`
+  UPDATE employee SET role_id = ${parseInt(employee.role_id.split(" ")[0])} 
+  AND manager_id = ${parseInt(employee.Managers.split(" ")[0])}
+  WHERE id =${parseInt(employee.Employee.split(" ")[0])};`);
+}
+}
+// UPDATE employee SET role_id = 2 AND manager_id =3 WHERE id =  7;
 module.exports = new DB(connection);
