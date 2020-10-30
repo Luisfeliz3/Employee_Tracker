@@ -41,6 +41,10 @@ const start = async () =>{
           name: "Update an Employee",
           value: "UPDATE_EMPLOYEE",
         },
+        {
+          name: "Quit",
+          value: "QUIT",
+        },
       ],
     },
   ]);
@@ -113,9 +117,7 @@ const start = async () =>{
       }
     ]).then(function (role) {
       console.log(role);
-      // let roles = parseInt(employee.role.split(" ")[0]);
       DB.addRole(role);
-      // console.log(typeof role.title + role.salary + role.department +"<<<-------");
       start();
     });
   };
@@ -163,7 +165,6 @@ const start = async () =>{
         }
       }
     ]).then(function (employee) {
- console.log(employee + "<<<<<<<<<<<<<<------->>>>>>>>>>");
       DB.addEmployee(employee);
       console.log(
         `The employee ${employee.first_name} ${employee.last_name} has been added as ${employee.role_id} managed by ${employee.Managers}`
@@ -189,9 +190,6 @@ const start = async () =>{
        } },
     ]).then(function (employee) {
       DB.deleteEmployee(employee);
-      // console.log(
-      //   `The employee ${employee.first_name} ${employee.last_name} has been Deleted!`
-      // );
       start();
     });
   };
@@ -215,7 +213,6 @@ const start = async () =>{
       },
     ]).then(function (role) {
       console.log(role);
-      // let roles = parseInt(employee.role.split(" ")[0]);
       console.log(typeof role + role + "<<<-------");
  
       start();
@@ -298,8 +295,8 @@ const start = async () =>{
     case "UPDATE_EMPLOYEE":
       return updateEmployee();
       break;
-    default:
-      break;
+      case "QUIT":
+      return process.exit(1);
   }
 }
 
