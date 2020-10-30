@@ -48,7 +48,7 @@ addRole(role) {
 
 deleteEmployee(employee) {
   console.log(parseInt(employee.id.split("")[0]) + '<<============');
-    return this.connection.query(`DELETE FROM employee WHERE id = ${parseInt(employee.id.split("")[0])};`);
+    return this.connection.query(`DELETE FROM employee WHERE id = ${parseInt(employee.id.split(" ")[0])};`);
 }
 
 updateEmployee(employee) {
