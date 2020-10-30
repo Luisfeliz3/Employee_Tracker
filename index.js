@@ -87,15 +87,35 @@ const start = async () =>{
   const addRole = async () => {
     await prompt([
       {
-        name: "role",
+        name: "title",
         type: "input",
         message: "What is the new role we that will be added ?",
       },
+      {
+        name: "salary",
+        type: "input",
+        message: "What is the salary for this role  ?",
+      },
+      {
+        name: "department",
+        type: "list",
+        choices: async () => {
+          let results = await DB.viewDepartments();
+          var choiceArray = [];
+          for (var i = 0; i < results.length; i++) {
+            choiceArray.push(
+              `${results[i].id} ${results[i].name}`
+            );
+          }
+          console.log("which Department will this employee work in ?");
+          return choiceArray;
+        }
+      }
     ]).then(function (role) {
       console.log(role);
       // let roles = parseInt(employee.role.split(" ")[0]);
-      DB.addRole(role.role );
-      console.log(typeof role.role + role.role + "<<<-------");
+      DB.addRole(role);
+      // console.log(typeof role.title + role.salary + role.department +"<<<-------");
       start();
     });
   };
@@ -248,15 +268,7 @@ const start = async () =>{
         }
       }
     ]).then(function (employee) {
- console.log(employee + "<<<<<<<<<<<<<<------->>>>>>>>>>");
       DB.updateEmployee(employee);
-      console.log(employee.Employee+ "<-------------------1-------------------");
-      console.log(employee.role_id + "<-------------------2-------------------");
-      console.log(employee.Managers + "<------------------3--------------------");
-      // console.log(employee.Managers + "<-------------------4-------------------");
-      // console.log(
-      //   `The employee ${employee.first_name} ${employee.last_name} has been added as ${employee.role_id} managed by ${employee.Managers}`
-      // );
       start();
     });
   };

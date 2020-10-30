@@ -39,10 +39,12 @@ addDepartment(department) {
 
 addRole(role) {
 
-  console.log(role + "<<<<<-------");
-    return this.connection.query(`INSERT INTO roles (title) VALUES ("${role}");`);
+  console.log(role.title + "<<<<<----title---");
+  console.log(role.salary + "<<<<<----salary---");
+  console.log(parseInt(role.department.split("")[0]) + "<<<<<----employ>>>>>");
+    return this.connection.query(`INSERT INTO roles (title,salary,department_id) VALUES ("${role.title}", ${role.salary}, ${parseInt(role.department.split("")[0])});`);
 }
-
+// INSERT INTO roles (title,salary,department_id) VALUES ('Floor Manager',100900.00,4);
 
 deleteEmployee(employee) {
   console.log(parseInt(employee.id.split("")[0]) + '<<============');
@@ -50,21 +52,21 @@ deleteEmployee(employee) {
 }
 
 updateEmployee(employee) {
-//  const id = parseInt(employee.id.split("")[0])
-//  const manId = parseInt(employee.id.split("")[0])
-//  const empId = parseInt(employee.id.split("")[0])
-
-//  console.log(id+"<<<<<---id---->>>");
-//  console.log(manId+"<<<<<---manid---->>>>");
-//  console.log(empId+"<<<<<----empd--->>>>");
-
-
   return this.connection.query(`
   UPDATE employee 
   SET role_id = ${parseInt(employee.role_id.split(" ")[0])},
   manager_id = ${parseInt(employee.Managers.split(" ")[0])}
   WHERE id =${parseInt(employee.Employee.split(" ")[0])};`);
 }
+
+updateDepartment(employee) {
+  return this.connection.query(`
+  UPDATE department 
+  SET role_id = ${parseInt(employee.role_id.split(" ")[0])},
+  manager_id = ${parseInt(employee.Managers.split(" ")[0])}
+  WHERE id =${parseInt(employee.Employee.split(" ")[0])};`);
+}
+
 }
 // UPDATE employee SET role_id = 2 AND manager_id =3 WHERE id =  7;
 module.exports = new DB(connection);
