@@ -87,24 +87,15 @@ const start = async () =>{
   const addRole = async () => {
     await prompt([
       {
-        name: "Roles",
-        type: "list",
-        choices: async () => {
-          let results = await DB.employeeRoles();
-          var choiceArray = [];
-          for (var i = 0; i < results.length; i++) {
-            choiceArray.push(
-              `${results[i].title}`
-            );
-          }
-          console.log("which Role do you need to update ?");
-          return choiceArray;
-        },
+        name: "role",
+        type: "input",
+        message: "What is the new role we that will be added ?",
       },
     ]).then(function (role) {
       console.log(role);
       // let roles = parseInt(employee.role.split(" ")[0]);
-      console.log(typeof role + role + "<<<-------");
+      DB.addRole(role.role );
+      console.log(typeof role.role + role.role + "<<<-------");
       start();
     });
   };
@@ -220,7 +211,7 @@ const start = async () =>{
           var choiceArray = [];
           for (var i = 0; i < results.length; i++) {
             choiceArray.push(
-              `${results[i].id} : ${results[i].first_name} ${results[i].last_name}`
+              `${results[i].id} ${results[i].first_name} ${results[i].last_name}`
             );
           }
           console.log("Which Employee do you wish to update ?");
@@ -259,9 +250,13 @@ const start = async () =>{
     ]).then(function (employee) {
  console.log(employee + "<<<<<<<<<<<<<<------->>>>>>>>>>");
       DB.updateEmployee(employee);
-      console.log(
-        `The employee ${employee.first_name} ${employee.last_name} has been added as ${employee.role_id} managed by ${employee.Managers}`
-      );
+      console.log(employee.Employee+ "<-------------------1-------------------");
+      console.log(employee.role_id + "<-------------------2-------------------");
+      console.log(employee.Managers + "<------------------3--------------------");
+      // console.log(employee.Managers + "<-------------------4-------------------");
+      // console.log(
+      //   `The employee ${employee.first_name} ${employee.last_name} has been added as ${employee.role_id} managed by ${employee.Managers}`
+      // );
       start();
     });
   };

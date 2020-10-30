@@ -50,9 +50,19 @@ deleteEmployee(employee) {
 }
 
 updateEmployee(employee) {
+//  const id = parseInt(employee.id.split("")[0])
+//  const manId = parseInt(employee.id.split("")[0])
+//  const empId = parseInt(employee.id.split("")[0])
+
+//  console.log(id+"<<<<<---id---->>>");
+//  console.log(manId+"<<<<<---manid---->>>>");
+//  console.log(empId+"<<<<<----empd--->>>>");
+
+
   return this.connection.query(`
-  UPDATE employee SET role_id = ${parseInt(employee.role_id.split(" ")[0])} 
-  AND manager_id = ${parseInt(employee.Managers.split(" ")[0])}
+  UPDATE employee 
+  SET role_id = ${parseInt(employee.role_id.split(" ")[0])},
+  manager_id = ${parseInt(employee.Managers.split(" ")[0])}
   WHERE id =${parseInt(employee.Employee.split(" ")[0])};`);
 }
 }
