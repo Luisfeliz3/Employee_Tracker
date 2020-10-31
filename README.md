@@ -7,9 +7,9 @@
 
 * The command-line application should allow users to:
 
-  * Update employee managers
+  * Update employee 
 
-  * View employees by manager
+  * View employees
 
   * Delete departments, roles, and employees
 
