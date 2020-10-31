@@ -25,9 +25,10 @@
 - [Tests](#tests)
 - [Questions](#questions)
 ## Installation
- Clone Repo
- Create SQL tables, THIS APP USED MYSQL WORKBENCH
- Run Command `npm start`, Then node server.js
+ * Clone Repo
+ * Create SQL tables 
+ * THIS APP USED MYSQL WORKBENCH
+ * Run Command `npm start`
 ## Usage
  This application will help track employees. Add, edit, delete and use this to maintain employees system.
 ## License
