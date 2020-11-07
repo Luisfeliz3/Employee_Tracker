@@ -1,15 +1,19 @@
 const mysql = require("mysql");
 const util = require('util');
-const connection = mysql.createConnection({
-  host: "localhost",
-  // Your port; if not 3306
-  port: 3306,
-  // Your username
-  user: "root",
-  // Your password
-  password: "12345678",
-  database: "employee_DB",
-});
+
+if (process.env.JAWSDB_URL){
+  connection= mysql.createConnection(process.env.JAWSDB_URL);
+
+} else {
+  connection = mysql.createConnection({
+
+    host: "localhost",
+    user: "root",
+    password: "12345678",
+    database: "tdtbxto38rzxt9ua"
+
+  })
+}
 connection.connect();
 
 connection.query = util.promisify(connection.query);
